@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  exat_fee_fe:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: exat-fee-fe:1.0.1
+    container_name: exat_free-fe-prd
+    networks:
+      - exat_fee_fontend
+    ports:
+      - 8088:80
+
+networks:
+  exat_fee_fontend:
+     driver: bridge

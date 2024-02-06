@@ -1,0 +1,144 @@
+
+<h3><b>{{title_page[language]}}</b>&nbsp;<small style="font-size: 13px;">version.1.0</small></h3>
+
+<!-- <small>version 1.0</small>
+<p> -->
+<div class="formgrid grid" > 
+    
+    <!-- <div class="field col-12">
+        <h4 >{{title_search_condition[language]}}</h4>    
+    </div>
+  
+    <div class="field col-12 md:col-2">
+        <span style="font-size: 15px;"><u>{{title_keyword[language]}}</u></span>
+    </div>
+    <div class="field col-12 md:col-10">
+        <div class="formgrid grid">          
+            <div class="col-fixed" style="width:200px; ">
+                <p-dropdown [options]="fillter_list" optionValue="code" optionLabel="name" [(ngModel)]="fill_by" [showClear]="true" [style]="{ width: '100%', overflow: 'visible' }"></p-dropdown>
+            </div>
+            <div class="col-fixed" style="width:300px; margin-left: 0px;">
+                <input type="text" id="fill_keyword" [(ngModel)]="fill_keyword" [style]="{ height: '40px' }" placeholder=""
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>            
+        </div>
+    </div>
+    <div class="field col-12 md:col-2">
+        
+    </div>
+    <div class="field col-12 md:col-10">
+        <p-button label="{{title_search[language]}}" styleClass="p-button-sm"  (click)="reloadFee()"></p-button>
+    </div> -->
+
+    <div class="field col-12" *ngIf="loading==true">
+        <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+    </div>    
+
+    <div class="field col-12">
+        <p-menubar [model]="menu_benefit"></p-menubar>
+        <div #TABLE>
+        <p-table  #dtBenefit [value]="benefit_list" styleClass="p-datatable-sm"
+            [tableStyle]="{'min-width': '30rem'}" 
+            selectionMode="single" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30,40,50]" [(selection)]="seletedBenefit" (onRowSelect)="onRowSelectFee($event)"
+            [paginator]="true" currentPageReportTemplate="{{title_page_from[language]}} {first} {{title_page_to[language]}} {last} {{title_page_total[language]}} {totalRecords} {{title_page_record[language]}}" 
+            
+            [globalFilterFields]="['BENEFIT_TEXT']"
+            
+            >
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text"
+                            (input)="dtBenefit.filterGlobal($any($event).target.value, 'contains')"
+                            placeholder="{{title_search[language]}}" />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>                    
+                    <th pSortableColumn="BENEFIT_ID" >{{title_grid_id[language]}}<p-sortIcon field="BENEFIT_ID"></p-sortIcon></th>
+                    <th style="width: 40%;" pSortableColumn="BENEFIT_TEXT">{{title_grid_text[language]}}<p-sortIcon field="BENEFIT_TEXT"></p-sortIcon></th>                   
+                    <th class="col_detail">{{title_grid_from[language]}}</th>
+                    <th class="col_detail">{{title_grid_to[language]}}</th>    
+                    <th pSortableColumn="EDIT_BY" class="col_detail">{{title_modified_by[language]}}<p-sortIcon field="EDIT_BY"></p-sortIcon></th>
+                    <th pSortableColumn="EDIT_DATE" class="col_detail">{{title_modified_date[language]}}<p-sortIcon field="EDIT_DATE"></p-sortIcon></th>
+                    <th></th> 
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-model let-i="rowIndex">
+                <tr>    
+                    <td style="text-align: center;">{{i+1}}</td>       
+                    <td style="text-align: center;">{{model.BENEFIT_ID}}</td>   
+                    <td style="text-align: left;">{{model.BENEFIT_TEXT}}</td>           
+                    <td style="text-align: center;" class="col_detail">{{model.BENEFIT_FROM | date:'dd/MM/yyyy'}}</td>
+                    <td style="text-align: center;" class="col_detail">{{model.BENEFIT_TO | date:'dd/MM/yyyy'}}</td>               
+                    <td class="col_detail">{{model.EDIT_BY}}</td> 
+                    <td class="col_detail">{{model.EDIT_DATE | date:'dd/MM/yyyy HH:mm'}}</td>                                 
+                    <td >
+                        <p-button icon="pi pi-search" (click)="doShowBenefitDetail(model.BENEFIT_ID)" label="" styleClass="p-button-text"></p-button>
+                       
+                        <p-button icon="pi pi-trash" (click)="doRemove(model.BENEFIT_ID)" label="" styleClass="p-button-text"></p-button>
+
+                    </td>                  
+                </tr>
+            </ng-template>
+        </p-table>
+        </div>
+    </div>
+</div>
+<!--  -->
+
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{width: '30vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" key="myDialog"></p-confirmDialog>
+
+<p-dialog header="รายละเอียด" [(visible)]="displayManage" styleClass="dialog-overflow" [style]="{width: '50vw'}" [position]="position" >
+    <p-scrollPanel [style]="{width: '98%', height: '600px'}" >
+        <div class="formgrid grid" >           
+              
+            
+            <div class="field col-12">                           
+                <label for="title_grid_id" class="spn_title">{{title_grid_id[language]}}</label>
+                <input type="text" id="title_grid_id" [(ngModel)]="seletedBenefit.BENEFIT_ID"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+
+            <div class="field col-12">                            
+                <label for="title_grid_text" class="spn_title">{{title_grid_text[language]}}</label>                           
+                <textarea [rows]="15" id="title_grid_text" [(ngModel)]="seletedBenefit.BENEFIT_TEXT"
+                    pInputTextarea class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+            </div>
+
+            <div class="field col-12 md:col-3">
+                <label for="benefit_fromdate">{{title_grid_from[language]}}</label>
+                <br>
+                <p-calendar [(ngModel)]="benefit_fromdate" dateFormat="dd/mm/yy"
+                    inputId="benefit_fromdate" appendTo="body"></p-calendar>
+            </div>        
+
+            <div class="field col-12 md:col-3">
+                <label for="benefit_todate">{{title_grid_to[language]}}</label>
+                <br>
+                <p-calendar [(ngModel)]="benefit_todate" dateFormat="dd/mm/yy"
+                    inputId="benefit_todate" appendTo="body"></p-calendar>
+            </div>        
+
+            <div class="field col-12 md:col-6"></div>
+
+                       
+            <div class="field col-12" *ngIf="progress==false">
+                <p-button label="{{title_save[language]}}" icon="pi pi-check" (click)="doRecord()"></p-button>
+                &nbsp;&nbsp;
+            </div>
+
+            <div class="field col-12" *ngIf="progress==true">
+                <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".9s"></p-progressSpinner>
+            </div>
+        </div>
+
+    </p-scrollPanel>
+</p-dialog>
+
+
+

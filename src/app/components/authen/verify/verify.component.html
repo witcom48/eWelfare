@@ -1,0 +1,25 @@
+<p-dialog header="{{langs.get('login')[selectlang]}}" [(visible)]="displayManage" [style]="{width: '30vw'}"
+    [draggable]="false" [closable]="false">
+    <div class="loginform">
+       
+        <label>{{langs.get('username')[selectlang]}}</label>
+        <input type="text" pInputText [(ngModel)]="user" />
+        <label>{{langs.get('password')[selectlang]}}</label>
+        <p-password [(ngModel)]="pass" [feedback]="false" [toggleMask]="true"></p-password>
+        
+            <button pButton type="button" label="{{langs.get('login')[selectlang]}}" icon="pi pi-lock" *ngIf="progress==false"
+                    (click)="doLogin()"></button>
+  
+        <div class="lang">
+            <p [ngClass]="(selectlang=='TH')?'color':''" (click)="changelang('TH')">TH</p>
+            <p> | </p>
+            <p [ngClass]="(selectlang=='EN')?'color':''" (click)="changelang('EN')">EN</p>
+        </div>
+    </div>
+</p-dialog>
+
+<div class="field col-12" *ngIf="progress==true">
+    <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+</div>
+
+<p-toast position="top-right"></p-toast> 
