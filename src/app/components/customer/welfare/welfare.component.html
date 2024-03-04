@@ -1,0 +1,33 @@
+
+
+<p-accordion [multiple]="true" [activeIndex]="[0]">
+
+    <p-accordionTab *ngFor="let welfare of summary_list" header="วันที่จ่าย {{welfare.wel_paydate|date:'dd/MM/yyyy'}}">
+        
+       
+            <table>
+                <tr>
+                    <td colspan="3">                       
+                        <b><span style="color: black;">เลขที่บัญชี 123456789</span></b>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>ค่ารักษาพยาบาล</td>
+                    <td align="right">5,000.00</td>
+                    <td>บาท</td>
+                </tr>
+                <tr>
+                    <td>ค่าช่วยเหลือการศึกษาบุตร</td>
+                    <td align="right">12,000.00</td>
+                    <td>บาท</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left">
+                        <b><span class="spn_title">ยอดเงินที่จ่าย</span>&nbsp;&nbsp;<span class="spn_payment">{{(welfare.wel_amount + welfare.wel_fee) | number : '1.2-2' }}</span>&nbsp;&nbsp;<span class="spn_title">บาท</span></b>
+                    </td>
+                </tr>
+            </table>
+    </p-accordionTab>
+
+
+</p-accordion>

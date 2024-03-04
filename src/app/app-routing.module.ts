@@ -2,11 +2,9 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 
-import { VerifyComponent } from './components/authen/verify/verify.component';
-
-import { LoginSsoComponent } from './components/authen/login-sso/login-sso.component';
-import { LoginThaieasypassComponent } from './components/authen/login-thaieasypass/login-thaieasypass.component';
 import { LogoutComponent } from './components/authen/logout/logout.component';
+import { LoginComponent } from './components/authen/login/login.component';
+
 
 @NgModule({
     imports: [
@@ -20,14 +18,9 @@ import { LogoutComponent } from './components/authen/logout/logout.component';
                     { path: 'sec', loadChildren: () => import('./components/authen/authen.module').then(m => m.AuthenModule) }
 
                 ]
-            },
-            //{ path: 'login', component: VerifyComponent, },
-            { path: 'login', component: LogoutComponent, },
-            { path: 'logout', component: LogoutComponent, },
-            
-            { path: 'login_sso/:login_token', component: LoginSsoComponent, },           
-            { path: 'login_easypass', component: LoginThaieasypassComponent, },
-            
+            },            
+            { path: 'login', component: LoginComponent, },
+            { path: 'logout', component: LogoutComponent, },   
 
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],

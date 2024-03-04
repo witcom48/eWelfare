@@ -39,6 +39,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WelfareComponent } from './welfare/welfare.component';
 
 @NgModule({
 	imports: [
@@ -81,7 +82,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 		ProgressSpinnerModule
 	],
 	declarations: [ 
-    DashboardComponent
+    DashboardComponent, WelfareComponent
   ]
 })
 export class CustomerModule { }

@@ -99,8 +99,8 @@ export class BenefitComponent implements OnInit {
         label: this.title_new[this.initial_current.Language],
         icon: 'pi pi-fw pi-plus',
         command: (event) => {
-          
-          
+          this.seletedBenefit = new BenefitModel()
+          this.displayManage = true
         }
       }      
       ,
@@ -259,6 +259,8 @@ export class BenefitComponent implements OnInit {
                   this.displayManage = false
                 }
                 else{
+
+                  console.log(res.message)
 
                   this.messageService.add({severity:'error', summary: 'Error', detail: "พบข้อผิดผลาดในการทำรายการ โปรดติดต่อเจ้าหน้าที่่"});
                   this.loading = false

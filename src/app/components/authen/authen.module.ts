@@ -46,9 +46,8 @@ import { PasswordModule } from 'primeng/password';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { LoginSsoComponent } from './login-sso/login-sso.component';
-import { LoginThaieasypassComponent } from './login-thaieasypass/login-thaieasypass.component';
 import { LogoutComponent } from './logout/logout.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
 	imports: [
@@ -102,10 +101,9 @@ import { LogoutComponent } from './logout/logout.component';
    
   
   
-    VerifyComponent,
-                 LoginSsoComponent,
-                 LoginThaieasypassComponent,
+    VerifyComponent,              
                  LogoutComponent,
+                 LoginComponent,
                  
   ]
 })

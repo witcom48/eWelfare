@@ -62,6 +62,20 @@ export class AppMenuComponent implements OnInit {
                     items: [                        
                         { label: 'หน้าแรก', routerLink: ['/admin'], icon: 'pi pi-fw pi-home' },   
                         { label: 'ข้อมูลสิทธิประโยชน์', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
+                        { label: 'จัดการข้อมูลข่าวสาร', routerLink: ['/admin/topic'], icon: 'pi pi-fw pi-file' },   
+                       
+                        { label: 'ออกจากระบบ', command: () => {
+                            this.logout();
+                        }, icon: 'pi pi-fw pi-sign-out' },
+                                                
+                    ]
+                },
+                
+                {
+                    label: 'พนักงาน',
+                    items: [                        
+                        { label: 'หน้าแรก', routerLink: ['/customer/welfare'], icon: 'pi pi-fw pi-home' },   
+                        { label: 'ข้อมูลสิทธิประโยชน์', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
                         { label: 'จัดการข้อมูลข่าวสาร', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
                        
                         { label: 'ออกจากระบบ', command: () => {
@@ -69,7 +83,7 @@ export class AppMenuComponent implements OnInit {
                         }, icon: 'pi pi-fw pi-sign-out' },
                                                 
                     ]
-                }              
+                }  
 
 
             ];
