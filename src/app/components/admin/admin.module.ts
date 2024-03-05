@@ -42,9 +42,8 @@ import { ChartModule } from 'primeng/chart';
 
 import {RadioButtonModule} from 'primeng/radiobutton';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-
 import { BenefitComponent } from './benefit/benefit.component';
+import { TopicComponent } from './topic/topic.component';
 
 
 @NgModule({
@@ -90,9 +89,8 @@ import { BenefitComponent } from './benefit/benefit.component';
 		RadioButtonModule
 		
 	],
-	declarations: [  
-  
-    DashboardComponent, BenefitComponent
+	declarations: [    
+    BenefitComponent, TopicComponent
   ]
 })
 export class AdminModule { }

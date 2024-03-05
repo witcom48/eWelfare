@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.initail_current = new InitialCurrent()
     this.initail_current.Token = "sdfReTwqqsf3fsfsdfxcvggdf#dgsdgcxbxbefdhdfhxcbwdsgsdeeeegdvvDfssgsgsWWFdwww"
     this.initail_current.Usertype = "USER"
-    this.initail_current.Username = "Admin"
+    this.initail_current.Username = "550062900"
     this.initail_current.Language = "TH"                         
               
     //-- Local storage

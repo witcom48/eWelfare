@@ -12,12 +12,12 @@
     <div class="field col-12">
         <p-menubar [model]="menu_benefit"></p-menubar>
         <div #TABLE>
-        <p-table  #dtBenefit [value]="benefit_list" styleClass="p-datatable-sm"
+        <p-table  #dtBenefit [value]="topic_list" styleClass="p-datatable-sm"
             [tableStyle]="{'min-width': '30rem'}" 
-            selectionMode="single" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30,40,50]" [(selection)]="seletedBenefit" (onRowSelect)="onRowSelectFee($event)"
+            selectionMode="single" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30,40,50]" [(selection)]="seletedTopic" (onRowSelect)="onRowSelectFee($event)"
             [paginator]="true" currentPageReportTemplate="{{title_page_from[language]}} {first} {{title_page_to[language]}} {last} {{title_page_total[language]}} {totalRecords} {{title_page_record[language]}}" 
             
-            [globalFilterFields]="['BENEFIT_TEXT']"
+            [globalFilterFields]="['TOPIC_TEXT']"
             
             >
             <ng-template pTemplate="caption">
@@ -33,8 +33,8 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th></th>                    
-                    <th pSortableColumn="BENEFIT_ID" >{{title_grid_id[language]}}<p-sortIcon field="BENEFIT_ID"></p-sortIcon></th>
-                    <th style="width: 40%;" pSortableColumn="BENEFIT_TEXT">{{title_grid_text[language]}}<p-sortIcon field="BENEFIT_TEXT"></p-sortIcon></th>                   
+                    <th pSortableColumn="TOPIC_ID" >{{title_grid_id[language]}}<p-sortIcon field="TOPIC_ID"></p-sortIcon></th>
+                    <th style="width: 40%;" pSortableColumn="TOPIC_TEXT">{{title_grid_text[language]}}<p-sortIcon field="TOPIC_TEXT"></p-sortIcon></th>                   
                     <th class="col_detail">{{title_grid_from[language]}}</th>
                     <th class="col_detail">{{title_grid_to[language]}}</th>    
                     <th pSortableColumn="EDIT_BY" class="col_detail">{{title_modified_by[language]}}<p-sortIcon field="EDIT_BY"></p-sortIcon></th>
@@ -45,16 +45,16 @@
             <ng-template pTemplate="body" let-model let-i="rowIndex">
                 <tr>    
                     <td style="text-align: center;">{{i+1}}</td>       
-                    <td style="text-align: center;">{{model.BENEFIT_ID}}</td>   
-                    <td style="text-align: left;">{{model.BENEFIT_TEXT}}</td>           
-                    <td style="text-align: center;" class="col_detail">{{model.BENEFIT_FROM | date:'dd/MM/yyyy'}}</td>
-                    <td style="text-align: center;" class="col_detail">{{model.BENEFIT_TO | date:'dd/MM/yyyy'}}</td>               
+                    <td style="text-align: center;">{{model.TOPIC_ID}}</td>   
+                    <td style="text-align: left;">{{model.TOPIC_TEXT}}</td>           
+                    <td style="text-align: center;" class="col_detail">{{model.TOPIC_FROM | date:'dd/MM/yyyy'}}</td>
+                    <td style="text-align: center;" class="col_detail">{{model.TOPIC_TO | date:'dd/MM/yyyy'}}</td>               
                     <td class="col_detail">{{model.EDIT_BY}}</td> 
                     <td class="col_detail">{{model.EDIT_DATE | date:'dd/MM/yyyy HH:mm'}}</td>                                 
                     <td >
-                        <p-button icon="pi pi-search" (click)="doShowBenefitDetail(model.BENEFIT_ID)" label="" styleClass="p-button-text"></p-button>
+                        <p-button icon="pi pi-search" (click)="doShowBenefitDetail(model.TOPIC_ID)" label="" styleClass="p-button-text"></p-button>
                        
-                        <p-button icon="pi pi-trash" (click)="doRemove(model.BENEFIT_ID)" label="" styleClass="p-button-text"></p-button>
+                        <p-button icon="pi pi-trash" (click)="doRemove(model.TOPIC_ID)" label="" styleClass="p-button-text"></p-button>
 
                     </td>                  
                 </tr>
@@ -75,28 +75,28 @@
             
             <div class="field col-12">                           
                 <label for="title_grid_id" class="spn_title">{{title_grid_id[language]}}</label>
-                <input type="text" id="title_grid_id" [(ngModel)]="seletedBenefit.BENEFIT_ID"
+                <input type="text" id="title_grid_id" [(ngModel)]="seletedTopic.TOPIC_ID"
                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
             </div>
 
             <div class="field col-12">                            
                 <label for="title_grid_text" class="spn_title">{{title_grid_text[language]}}</label>                           
-                <textarea [rows]="15" id="title_grid_text" [(ngModel)]="seletedBenefit.BENEFIT_TEXT"
+                <textarea [rows]="15" id="title_grid_text" [(ngModel)]="seletedTopic.TOPIC_TEXT"
                     pInputTextarea class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
             </div>
 
             <div class="field col-12 md:col-3">
-                <label for="benefit_fromdate">{{title_grid_from[language]}}</label>
+                <label for="TOPIC_fromdate">{{title_grid_from[language]}}</label>
                 <br>
-                <p-calendar [(ngModel)]="benefit_fromdate" dateFormat="dd/mm/yy"
-                    inputId="benefit_fromdate" appendTo="body"></p-calendar>
+                <p-calendar [(ngModel)]="topic_fromdate" dateFormat="dd/mm/yy"
+                    inputId="TOPIC_fromdate" appendTo="body"></p-calendar>
             </div>        
 
             <div class="field col-12 md:col-3">
-                <label for="benefit_todate">{{title_grid_to[language]}}</label>
+                <label for="topic_todate">{{title_grid_to[language]}}</label>
                 <br>
-                <p-calendar [(ngModel)]="benefit_todate" dateFormat="dd/mm/yy"
-                    inputId="benefit_todate" appendTo="body"></p-calendar>
+                <p-calendar [(ngModel)]="topic_todate" dateFormat="dd/mm/yy"
+                    inputId="topic_todate" appendTo="body"></p-calendar>
             </div>        
 
             <div class="field col-12 md:col-6"></div>

@@ -1,0 +1,16 @@
+
+<h3><b>{{title_page[language]}}</b>
+<p></p>
+<p></p>
+<p-panel *ngFor="let model of benefit_list">
+    <ng-template pTemplate="header">
+        {{model.BENEFIT_FROM | date:'dd/MM/yyyy'}} - {{model.BENEFIT_TO | date:'dd/MM/yyyy'}}
+    </ng-template>
+    {{model.BENEFIT_TEXT}}
+    
+</p-panel>
+<div class="field col-12" *ngIf="loading==true">
+    <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+</div>   
+
+

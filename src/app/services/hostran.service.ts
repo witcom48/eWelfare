@@ -4,12 +4,11 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { InitialCurrent } from '../config/initial_current';
-import { BenefitModel } from '../models/benefit';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BenefitService {
+export class HostranService {
 
   public config:AppConfig = new AppConfig();  
   public initial_current:InitialCurrent = new InitialCurrent();  
@@ -57,7 +56,7 @@ export class BenefitService {
       });
   }
        
-  public benefit_get(token:string, fromdate:Date, todate:Date){ 
+  public welfare_summary(token:string, empid:string){ 
     
       this.httpHeaders = new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
@@ -70,19 +69,17 @@ export class BenefitService {
         headers: this.httpHeaders
       };
 
-      let request = {         
-        fromdate:this.datePipe.transform(fromdate, 'yyyy-MM-dd 00:00:00'),
-        todate:this.datePipe.transform(todate, 'yyyy-MM-dd 00:00:00'),
-        status:status,         
+      let request = {        
+        empid:empid,         
       };
 
-      return this.http.post<any>(this.config.ApiEwelfare + '/benefit/get', request, this.options).toPromise()   
+      return this.http.post<any>(this.config.ApiEwelfare + '/hostran/summary', request, this.options).toPromise()   
     .then((res) => {    
       return res;
     });
   }
 
-  public benefit_record(token:string, model:BenefitModel){ 
+  public welfare_detail(token:string, empid:string, paydate:Date){ 
     
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
@@ -91,47 +88,21 @@ export class BenefitService {
       'Authorization': "Bearer " + token
     });
 
-    this.options = { headers: this.httpHeaders };
-
-    let request = { 
-      id:model.BENEFIT_ID,
-      text:model.BENEFIT_TEXT,
-      from:this.datePipe.transform(model.BENEFIT_FROM, 'yyyy-MM-dd 00:00:00'),
-      to:this.datePipe.transform(model.BENEFIT_TO, 'yyyy-MM-dd 00:00:00'),
-      edit_by:this.initial_current.Username
-         
+    this.options = {
+      headers: this.httpHeaders
     };
 
-    return this.http.post<any>(this.config.ApiEwelfare + '/benefit/record', request, this.options).toPromise()   
-    .then((res) => {
-      //let message = JSON.parse(res);
-      //console.log(res)
-      return res;
-    });
-  }
-
-  public benefit_remove(token:string, id:string){ 
-    
-    this.httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      'Accept': 'application/json',
-      'Cache-Control': 'no-cache',
-      'Authorization': "Bearer " + token
-    });
-
-    this.options = { headers: this.httpHeaders };
-
-    let request = { 
-      id:id,     
-      edit_by:this.initial_current.Username         
+    let request = {        
+      empid:empid,
+      paydate:this.datePipe.transform(paydate, 'yyyy-MM-dd 00:00:00'),         
     };
 
-    return this.http.post<any>(this.config.ApiEwelfare + '/benefit/remove', request, this.options).toPromise()   
-    .then((res) => {
-      //let message = JSON.parse(res);
-      //console.log(res)
-      return res;
-    });
-  }
+    return this.http.post<any>(this.config.ApiEwelfare + '/hostran/detail', request, this.options).toPromise()   
+  .then((res) => {    
+    return res;
+  });
+}
+
+  
 
 }

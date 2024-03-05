@@ -40,6 +40,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelfareComponent } from './welfare/welfare.component';
+import { BenefitComponent } from './benefit/benefit.component';
+import { TopicComponent } from './topic/topic.component';
 
 @NgModule({
 	imports: [
@@ -82,7 +84,7 @@ import { WelfareComponent } from './welfare/welfare.component';
 		ProgressSpinnerModule
 	],
 	declarations: [ 
-    DashboardComponent, WelfareComponent
+    DashboardComponent, WelfareComponent, BenefitComponent, TopicComponent
   ]
 })
 export class CustomerModule { }

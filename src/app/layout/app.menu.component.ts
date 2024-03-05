@@ -59,14 +59,10 @@ export class AppMenuComponent implements OnInit {
                 
                 {
                     label: 'ผู้ดูแลระบบ',
-                    items: [                        
-                        { label: 'หน้าแรก', routerLink: ['/admin'], icon: 'pi pi-fw pi-home' },   
-                        { label: 'ข้อมูลสิทธิประโยชน์', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
-                        { label: 'จัดการข้อมูลข่าวสาร', routerLink: ['/admin/topic'], icon: 'pi pi-fw pi-file' },   
-                       
-                        { label: 'ออกจากระบบ', command: () => {
-                            this.logout();
-                        }, icon: 'pi pi-fw pi-sign-out' },
+                    items: [                     
+                        
+                        { label: 'จัดการข้อมูลสิทธิประโยชน์', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
+                        { label: 'จัดการข้อมูลข่าวสาร', routerLink: ['/admin/topic'], icon: 'pi pi-fw pi-file' }
                                                 
                     ]
                 },
@@ -75,8 +71,15 @@ export class AppMenuComponent implements OnInit {
                     label: 'พนักงาน',
                     items: [                        
                         { label: 'หน้าแรก', routerLink: ['/customer/welfare'], icon: 'pi pi-fw pi-home' },   
-                        { label: 'ข้อมูลสิทธิประโยชน์', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
-                        { label: 'จัดการข้อมูลข่าวสาร', routerLink: ['/admin/benefit'], icon: 'pi pi-fw pi-file' },   
+                        { label: 'ข้อมูลสิทธิประโยชน์', routerLink: ['/customer/benefit'], icon: 'pi pi-fw pi-file' },   
+                        { label: 'จัดการข้อมูลข่าวสาร', routerLink: ['/customer/topic'], icon: 'pi pi-fw pi-file' }
+                                                
+                    ]
+                }  ,
+                
+                {
+                    label: 'ความปลอดภัย',
+                    items: [  
                        
                         { label: 'ออกจากระบบ', command: () => {
                             this.logout();
@@ -86,26 +89,7 @@ export class AppMenuComponent implements OnInit {
                 }  
 
 
-            ];
-        //}
-        // if (this.initial_current.Usertype == "USER") {
-        //     this.model = [
-        //         {
-        //             label: 'ลูกค้า',
-        //             items: [                       
-        //                 { label: 'ค่าธรรมเนียมการรักษาบัญชี', routerLink: ['/customer/fee'], icon: 'pi pi-fw pi-file' },
-        //                 // { label: 'ระบบ E-Tax', command: () => {
-        //                 //     this.etaxpage_user();
-        //                 // }, icon: 'pi pi-fw pi-th-large' },
-        //                 { label: 'ออกจากระบบ', command: () => {
-        //                     this.logout_customer();
-        //                 }, icon: 'pi pi-fw pi-sign-out' },
-                        
-        //             ]
-        //         }
-        //     ];
-        // }
-
+            ];      
        
     }
 }
