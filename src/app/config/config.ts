@@ -23,8 +23,8 @@ export class AppConfig {
 
   //-- Thai easypass
   ApiExatAuth : string = "https://ebiz-service.thaieasypass.com/backend_system/api/v1/auth"
-  ApiExatAuthUsername : string = "exat_it_01"
-  ApiExatAuthPassword : string = "siQNa2UXTp7U5f"  
+  ApiExatAuthUsername : string = "xxx"
+  ApiExatAuthPassword : string = "xxxx"  
   ApiExatMember : string = "https://ebiz-service.thaieasypass.com/backend_system/api/v1/exat_member/member"
   
   //-- Etax
@@ -53,7 +53,7 @@ export class AppConfig {
   ApiETaxSign : string = "https://etax.exat.co.th/etaxService/api/v1/Sign/SignDocument"
   ApiETaxToken : string = "https://etax.exat.co.th/etaxService/api/v1/login/auth"
   ApiETaxUsername : string = "fee_prd"
-  ApiETaxPassword : string = "oCl0HkB4COwfGnOLb3L4"
+  ApiETaxPassword : string = "xxxxcccxzaa"
 
 
 
